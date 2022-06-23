@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/input.css">
+
+
+{#   쿠키관련 스크립트#}
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <title>main_page</title>
+</head>
+
+<style>
+    .main{
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 4fr 4fr;
+
+
+
+    }
+    .main_wrap{
+        display: grid;
+        grid-template-rows: 8fr 1fr;
+
+        height: 650px;
+        width: 1500px;
+        background-color: black;
+
+
+    }
+    .main>div{
+        background-color: white;
+        margin: 15px 15px 0px 15px;
+        width: 270px;
+        height: 250px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: HanSans;
+
+    }
+       .btn_wrap{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .btn_wrap>div{
+        margin: 5px;
+        font-size: 20px;
+        color: rgb(64, 64, 64);
+        text-align: center;
+        line-height: 2.6em;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        background-color: rgb(244, 244, 244);
+
+        height:50px;
+        width: 50px
+    }
+    .total_wrap{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+
+    }
+     .forcursor:hover{
+        color: blue;
+        cursor: pointer;
+        }
+
+
+</style>
+<script>
+    $(document).ready(function () {
+        let check_community = {{ my_content|tojson}}
+        if (check_community === 'on_community') {
+            show_all_content(1)
+        } else
+            show_my_content(1)
+    });
+
+
+    function sign_out() {
+        $.removeCookie('mytoken', {path: '/'});
+        alert('로그아웃!')
+        window.location.href = "/login"
+    }
+
+
+    function show_my_content(num){
+            $('#main').empty()
+            $('#btn').empty()
+
+            $.ajax({
+                type: 'POST',
+                url: '/mycontent',
+                {#data: {'id_give':id_give},#}
+                data: {},
+                success: function (response) {
+                    {#id_give=sessionStorage.getItem('id')#}
+
+                   let rows=response['my_content']
+                    let temp_html=``
+                    // console.log(rows)
+
+                    my_create_btn(rows.length)
+
+                    for( let i=0+10*(num-1); i<10+10*(num-1)&& i<rows.length;i++){
+                        let text = rows[i]['text']
+                        let title = rows[i]['title']
+                        let id = rows[i]['id']
+                        // console.log(text,title,id)
+                        temp_html = `<div>
+                                <p class = 'forcursor' style="font-weight: bold;font-size: 36px;" onclick = "log_showpage('${text}','${title}','${id}')" >${title}</p>
+                                <p style="font-weight: bold; font-size: 18px;font-family: HanSans;">${text}</p>
+
+
+
+                            </div>`
+
+
+
+
+                        $('#main').append(temp_html)
+                    }
+
+
+
+
+                    }
+
+            });
+    }
+    function show_all_content(num){
+            $('#main').empty()
+            $('#btn').empty()
+
+            $.ajax({
+                type: 'POST',
+                url: '/allcontent',
+                data: {},
+                success: function (response) {
+                   let rows=response['all_content']
+                    let temp_html=``
+                    // console.log(rows)
+
+
+                    all_create_btn(rows.length)
+
+                    for( let i=0+10*(num-1); i<10+10*(num-1)&& i<rows.length;i++){
+                        let text = rows[i]['text']
+                        let title = rows[i]['title']
+                        let id = rows[i]['id']
+                        // console.log(text,title,id)
+                        temp_html = `<div>
+                                <p class = 'forcursor' style="font-weight: bold;font-size: 36px;" onclick = "log_showpage('${text}','${title}','${id}')">${title}</p>
+                                <p style="font-weight: bold; font-size: 18px;font-family: HanSans;">${text}</p>
+
+
+
+                            </div>`
+
+
+
+
+                        $('#main').append(temp_html)
+                    }
+
+
+
+
+                    }
+
+            });
+    }
+    function my_create_btn(num){
+            let btn_num = parseInt(num / 10)+1
+            // console.log(btn_num)
+            let temp_html = ``
+            let count=1
+            if(btn_num>1){
+                 temp_html = `<div class ='forcursor' data-text-content="true" style="" class="" onclick="show_my_content(${count})" >${count}</div>`
+
+                $('#btn').append(temp_html)
+                count =count+1
+                if(btn_num>1){
+                    temp_html = `<div class ='forcursor' data-text-content="true" style="" class="" onclick="show_my_content(${count})" >${count}</div>`
+
+                    $('#btn').append(temp_html)
+                    count =count+1
+
+                    if(btn_num>2){
+                        temp_html = `<div class ='forcursor' data-text-content="true" style="" class="" onclick="show_my_content(${count})" >${count}</div>`
+                        $('#btn').append(temp_html)
+                        console.log(count)
+                    }
+                }
+            }
+
+    }
+    function all_create_btn(num){
+            let btn_num = parseInt(num / 10)+1
+            // console.log(btn_num)
+            let temp_html = ``
+            let count=1
+            if(btn_num>1){
+                 temp_html = `<div class ='forcursor' data-text-content="true" style="" class="" onclick="show_all_content(${count})" >${count}</div>`
+
+                $('#btn').append(temp_html)
+                count =count+1
+                if(btn_num>1){
+                    temp_html = `<div class ='forcursor' data-text-content="true" style="" class="" onclick="show_all_content(${count})" >${count}</div>`
+
+                    $('#btn').append(temp_html)
+                    count =count+1
+
+                    if(btn_num>2){
+                        temp_html = `<div class ='forcursor' data-text-content="true" style="" class="" onclick="show_all_content(${count})" >${count}</div>`
+                        $('#btn').append(temp_html)
+                        console.log(count)
+                    }
+                }
+            }
+
+    }
+
+
+    function log_showpage(text,title,id){
+    sessionStorage.setItem("title",title)
+    sessionStorage.setItem("text",text)
+    sessionStorage.setItem("id",id)
+    location.href='/show'
+
+}
+</script>
+<body style="background-color: #333334">
+        <header>
+            <h1><a onclick="location.href='/mypage'"><img  style="min-height: 65px; min-width: 124px;" src="../static/img/logo.png" alt=""></a></h1>
+            <nav>
+                <ul>
+                    <li><a onclick="location.href='/input'">START</a></li>
+                    <li><a class="forcursor" onclick="show_my_content(1)">MYPAGE</a></li>
+                    <li><a class="forcursor" onclick="show_all_content(1)">COMMUNITY</a></li>
+                    <li><a class="logout_button"  onclick="sign_out()">LOGOUT</a></li>
+
+                </ul>
+            </nav>
+        </header>
+
+        <div class="total_wrap" style="margin: 60px;padding: 20px" >
+               <div class="main_wrap " style="background: rgba(128, 128, 128, 0.2);">
+                <div>
+                    <div class="main" id="main">
+                    </div>
+                    <div class="btn_wrap" id="btn">
+                    </div>
+                </div>
+            </div>
+            <span id='test'></span>
+        </div>
+</body>
+</html>

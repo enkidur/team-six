@@ -1,0 +1,147 @@
+
+
+.background_body {
+    background-image: url('/static/img/login2.png');
+    background-size: cover;
+    height: 100vh;
+    /*border: 2px solid;*/ /*color: pink;*/
+}
+
+.wrapper{
+    display: flex;
+    justify-content:space-around;
+    /*align-items: center;*/
+}
+.section_style:nth-child(1) {
+    /*background-color: red;*/
+    padding-top: 10%;
+}
+
+.section_style:nth-child(2) {
+    /*background-color: green;*/
+    padding-top: 10%;
+
+}
+
+.title {
+    font-size: 4rem;
+    width: 100%;
+    height: 100%;
+    color: white;
+    /*background-color: green;*/
+    font-family: 'Kdam Thmor Pro', sans-serif !important;
+}
+
+.subtitle {
+    font-size: 8rem;
+    padding-top: 20px;
+    color: #d9ae09;
+    font-family: 'Black Han Sans', sans-serif !important;
+}
+
+/*그림자 주는 css*/
+.shadow-style {
+    text-shadow: 4px 4px 4px grey;
+}
+
+.is-sparta {
+    color: #d9ae09 !important;
+    text-shadow: 2px 2px 2px grey;
+    text-align: left;
+    font-size: 14pt;
+
+}
+
+.is-sparta_overlap_style {
+    text-shadow: 2px 2px 2px grey;
+    text-align: left;
+    height: 100%;
+    max-height: 200px;
+    background-color: #d9ae09;
+    border-color: transparent;
+    color: #fff !important;
+
+}
+
+.button.is-sparta {
+
+    height: 100%;
+    max-height: 200px;
+    background-color: #d9ae09;
+    border-color: transparent;
+    color: #fff !important;
+
+}
+
+.button.is-sparta-new {
+
+    height: 100%;
+    max-height: 200px;
+    background-color: #810837;
+    border-color: transparent;
+    font-size: 2rem;
+
+    color: #fff !important;
+
+
+}
+
+.button.is-sparta.is-join {
+    background-color: transparent;
+    border-color: #d9ae09;
+    color: #e8344e !important;
+}
+
+.button.is-sparta.is-outlined {
+    background-color: transparent;
+    border-color: gray;
+    color: gray !important;
+}
+
+.help {
+
+    color: white;
+    padding: 1px 0px 5px 0px;
+    font-size: 10pt;
+    text-shadow: 1px 1px 1px black;
+}
+
+.section1_style {
+    width: 30%;
+    min-width: 600px;
+    float: left;
+    margin-top: 10%;
+    background: rgba(128, 128, 128, 0.5);
+}
+
+.section2_style {
+    position: center;
+    float: right;
+    /*background: #8977ad;*/
+    /*width: 40%;*/
+    /*max-height: 100vh;*/
+    min-width: 666.67px;
+    /*box-sizing: border-box;*/
+    background-color: green;
+    margin : 50px;
+}
+
+.box_style {
+    max-width: 580px;
+    min-width: 570px;
+    background: rgba(0, 0, 0, 0.6);
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.login_error_text{
+    color: white;
+    font-size: 3rem;
+    font-family: 'Gothic A1', sans-serif;
+}
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
+
+}

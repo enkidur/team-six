@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <title>WAHC-VIEW</title>
+
+    <style>
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-wrap: nowrap;
+            background-color: #212123;
+            min-height: 100%;
+        }
+
+        header {
+            height: 95px;
+            padding: 1px;
+            color: black;
+            background: #ffffff;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: underline;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding-left: 210px;
+            /* 생략 */
+        }
+
+        header nav {
+            diplay: block;
+            align-items: center;
+            height: fit-content;
+            width: 100%;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: block;
+        }
+
+        header nav ul li {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        body {
+            padding-top: 50px;
+            /* 생략 */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            overflow: hidden;
+            border-left: 5px solid #ffffff;
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul li {
+            float: left;
+            border-right: 2px solid #fff;
+        }
+
+        nav ul li a {
+            display: block;
+            padding-left: 165px;
+            padding-right: 30px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .exer-wrapper {
+            justify-content: center;
+            margin-top: 3rem;
+            min-width: 600px;
+        }
+
+        .exer-title {
+            color: #333334;
+            font-size: 2rem;
+            font-weight: 900;
+            padding: 0 2rem 2rem;
+        }
+
+
+        #wrap {
+            background: #fdfdfe;
+            margin-top: 100px;
+            margin-left: 350px;
+            width: 1050px;
+            height: 50%;
+            padding: 20px;
+        }
+
+        .exer-input-box {
+            margin: 3px;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            height: 500px;
+            border: 5px solid #ddd;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        button {
+            background-color: transparent;
+            border: 0;
+        }
+
+        .button-group button {
+            border: 1px solid #eee;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #btn_box {
+            margin-top: 100px;
+            margin-left: 10px;
+            width: 100px;
+            height: 500px;
+        }
+
+        .exer-input {
+            height: 100%;
+            width: 100%;
+            border: none;
+            resize: none;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            let title = sessionStorage.getItem('title')
+            let text = sessionStorage.getItem('text')
+            $('#get_title').append(title)
+            $('#get_text').append(text)
+        });
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
+
+    </script>
+</head>
+
+<body style="background-color: #333334">
+<header>
+    <h1><a onclick="location.href='/mypage'"><img style="min-height: 66px; min-width: 126px;"
+                                                  src="../static/img/logo.png" alt=""></a></h1>
+    <nav>
+        <ul>
+            <li><a onclick="location.href='/input'">START</a></li>
+            <li><a onclick="location.href='/mypage'">MYPAGE</a></li>
+            <li><a onclick="location.href='/community'">COMMUNITY</a></li>
+            <li><a class="logout_button" onclick="sign_out()">LOGOUT</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+
+<div id="wrap">
+    <div class="exer-wrapper">
+        <div class="exer-title">운동내용</div>
+        <div class="input-group input-group-lg" style="padding: 10px">
+            <span class="input-group-text">제목</span>
+            <div type="text" class="form-control" id="get_title" style="padding: 10px">
+            </div>
+        </div>
+        <div class="mybox" style="padding: 5px;">
+            <div class="exer-input-box">
+                <div type="text" class="exer-input" placeholder="오늘 완료한 운동과 횟수,세트수 를 기록해주세요" id="get_text">
+                </div>
+            </div>
+            <p class='info'><span id="aa" style="color: blue"></span></p>
+        </div>
+    </div>
+</div>
+<div id="btn_box">
+    <button id="cancelbtn"
+            onclick="location.href='/'"
+            style="width: 126px;
+            height: 44px;"
+            type="button"
+            class="btn btn-secondary">
+        돌아가기
+    </button>
+</div>
+
+
+
+</body>
+</html>

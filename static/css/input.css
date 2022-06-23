@@ -1,0 +1,244 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #212123;
+    min-height: 100%;
+}
+
+header {
+    height: 95px;
+    padding: 1px;
+    color: black;
+    background: #ffffff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: underline;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    /* width: 100% */
+    left: 0;
+    right: 0;
+    padding-left: 210px;
+    /* 생략 */
+}
+
+header nav {
+    diplay: block;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+}
+
+header nav ul {
+    list-style: none;
+    display: block;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin: 20px;
+}
+
+body {
+    padding-top: 50px;
+
+    /* 생략 */
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    overflow: hidden;
+    border-left: 5px solid #ffffff;
+    position: sticky;
+    top: 0;
+}
+
+nav ul li {
+    float: left;
+    border-right: 2px solid #fff;
+}
+
+nav ul li a {
+    display: block;
+    padding-left: 165px;
+    padding-right: 30px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.exer-wrapper {
+    justify-content: center;
+    margin-top: 3rem;
+    min-width: 600px;
+}
+
+.exer-title {
+    padding: 2rem;
+    color: #333334;
+    font-size: 2rem;
+    font-weight: 900;
+    padding-top: 0;
+}
+
+
+#wrap {
+    background: #fdfdfe;
+    margin-top: 100px;
+    margin-left: 10px;
+    width: 1050px;
+}
+
+#myexer {
+    margin-top: 100px;
+    margin-left: 10px;
+    width: 100px;
+    height: 500px;
+}
+
+.exer-input-box {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    height: 3rem;
+    border-bottom: 1px solid #ddd;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+.complete-all-btn {
+    color: gray;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem 0.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+}
+
+.complete-all-btn {
+    color: green
+}
+
+.exer-input {
+    width: 80%;
+    text-align: center;
+    border: 0;
+    outline: none;
+    font-size: 1.3rem;
+}
+
+.exer-item {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.exer-item:hover .delBtn {
+    opacity: 1;
+}
+
+.checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem 0.5rem;
+    border-radius: 50px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    text-align: center;
+}
+
+.exer-item.checked .checkbox {
+    border: 2px solid darkgray;
+    color: green;
+}
+
+.exer {
+    font-size: 1.3rem;
+    padding: 0 1rem;
+    width: 80%;
+}
+
+.exer-item.checked .exer {
+    font-style: italic;
+    text-decoration: line-through;
+    color: lightgray;
+}
+
+.delBtn {
+    opacity: 1;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.exer-bottom {
+    height: 3rem;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.button-group {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.button-group button {
+    border: 1px solid #eee;
+    padding: 0.2rem 0.5rem;
+    margin: 0 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.button-group button.selected {
+    border: 2px solid rosybrown;
+    padding: 0.2rem 0.5rem;
+    margin: 0 0.5rem;
+    border-radius: 8px;
+}
+
+.clear-completed-btn:hover {
+    font-style: italic;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#addbtn {
+    font-weight: bold;
+    width: 126px;
+    height: 44px;
+}
+
+p.info {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #ccc;
+}
